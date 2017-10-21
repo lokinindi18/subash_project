@@ -1,0 +1,39 @@
+<!--<div class="container-fluid custom-modal-container">-->
+<form (submit)="createDashboard()" [formGroup]="createDashboardForm" autocomplete="off">
+
+	<header>
+		<!--We added the superscript manually for this particular location and situation, as applying a registered trademark thru the dev side was posing alignment issues.-->
+		<span class="regtitle createdashboardtitle">{{applicationTitle}} - Create New Dashboard</span>
+		<span><i class="fa fa-close iw-close-icon" (click)="dialog.dismiss()"></i></span>
+	</header>
+	<content>
+		<label class="lbl-enter-name">Please enter a dashboard name.</label>
+		<div class="form-group">
+			<span class="required">*</span>
+			<label for="dashboardname" class="lbl-dashboard-name">Dashboard Name:</label>
+			<input type="text" id="dashboardname" class="form-control iw-dashbaord-name" required autocomplete="nope" [(ngModel)]="dashboard.Name"
+			 (ngModelChange)="trimDashBoardName($event)" [formControl]="createDashboardForm.controls['dashboardname']" #dashboardname="ngForm"
+			 maxLength="40">
+
+			<div *ngIf="!createDashboardForm.controls.dashboardname.valid">
+				<div class="iw-inline-error" *ngIf="!createDashboardForm.controls.dashboardname.errors.unique" [hidden]="(createDashboardForm.controls.dashboardname.valid || createDashboardForm.controls.dashboardname.pristine)">
+					Please Enter a Dashboard Name
+				</div>
+				<div class="iw-inline-error message" *ngIf="createDashboardForm.controls.dashboardname.errors.maxlength || (dashboard.Name && dashboard.Name.length > 40)">
+					Dashboard name can have a maximum of 40 characters. Please enter a new dashboard name.
+				</div>
+				<div class="iw-inline-error" *ngIf="createDashboardForm.controls.dashboardname.errors.unique">
+					{{dashboard.Name}} already exists. Please enter a new dashboard name.
+				</div>
+			</div>
+			<div class="iw-inline-error" *ngIf="createDashboardForm.controls.dashboardname.valid && isDuplicate">
+				{{dashboard.Name}} already exists. Please enter a new dashboard name.
+			</div>
+		</div>
+	</content>
+	<footer>
+		<button type="submit" class="btn btn-primary" [disabled]="!createDashboardForm.valid || isDuplicate">create dashboard</button>
+		<button type="button" class="btn btn-primary" (click)="dialog.dismiss()">cancel</button>
+	</footer>
+</form>
+<!--</div>-->

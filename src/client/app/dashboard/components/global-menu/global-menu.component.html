@@ -1,0 +1,65 @@
+<div class="iw-global-menu-title" (click)="toggleMenu()" [ngClass]="{'iw-global-menu-title-normal': !isCollapsed, 'iw-global-menu-title-collapsed': isCollapsed, 'iw-global-moz-adjust-top' : isCollapsed}">
+	<span>Menu</span>
+	<span><i class="fa fa-backward"></i></span>
+</div>
+<div *ngIf="!isCollapsed">
+	<div class="iw-job-overview-button" (click)="onJobOverViewClick()"><a>Job Overview</a></div>
+	<div class="panel-group iw-panel-bottom" *ngFor="let jobGroup of jobGroupCollection;let pslIndex = index">
+		<div class="iw-accordion-parent-row">
+			<i class="pull-left fa fa-caret-down iw-parent-toggle-icon" (click)="onPslClick(pslIndex)" [ngClass]="{'fa-caret-down':jobGroup.IsOpen, 'fa-caret-right': !jobGroup.IsOpen}"></i>
+			<div class="panel-heading" [ngClass]="{'iw-psl-selected': jobGroup.IsOpen}">
+				<h4 class="panel-title" [ngClass]="{'iw-bold': jobGroup.IsOpen}" (click)="onPslClick(pslIndex)">
+					{{jobGroup.Name}}
+				</h4>
+			</div>
+		</div>
+		<div class="panel-collapse collapse" [ngClass]="{'in': jobGroup.IsOpen}" *ngFor="let job of jobGroup.Jobs;let jobIndex = index">
+			<div class="iw-job-name">
+				<div [ngClass]="{'iw-job-selected': (selectedJob != null && selectedJob.Name === job.Name)}">
+					<i class="pull-left fa iw-job-toggle-icon" (click)="onJobClick(pslIndex, jobIndex)" [ngClass]="{'fa-caret-down':job.IsOpen, 'fa-caret-right': !job.IsOpen}"></i>
+					<h4 class="panel-title">
+						<span [ngClass]="{'iw-bold': (selectedJob != null && selectedJob.Name === job.Name)}" (click)="onJobClick(pslIndex, jobIndex)">{{job.Name}}</span>
+					</h4>
+				</div>
+			</div>
+			<div *ngIf="job.IsOpen" class="iw-well-info iw-dashboard-button" [ngClass]="{'iw-bold': (currentDashboard === null && isWellInfoClicked===true), 'iw-wellinfo-selected': (currentDashboard === null && isWellInfoClicked===true)}"
+				(click)="onWellInfoClicked(pslIndex, jobIndex, job)">Well Information</div>
+			<div *ngIf="job.IsOpen" class="iw-exporter-info iw-dashboard-button" [ngClass]="{'iw-bold': (currentDashboard === null && isExporterClicked===true), 'iw-exporter-selected': (currentDashboard === null && isExporterClicked===true)}"
+				(click)="exporterClicked(pslIndex, jobIndex, job)">Exporter</div>
+
+			<div class="panel-collapse collapse" [ngClass]="{'in': job.IsOpen}">
+				<div class="iw-dashboard-expander iw-dashboard-align">
+					<i *ngIf="job.DashboardControl" class="pull-left fa fa-caret-down iw-job-toggle-icon" [ngClass]="{'fa-caret-down':job.DashboardControl.IsOpen, 'fa-caret-right': !job.DashboardControl.IsOpen}"
+						(click)="onDashboardControlClick(pslIndex, jobIndex)"></i>
+					<h4 class="panel-title">
+						<span (click)="onDashboardControlClick(pslIndex, jobIndex)">Dashboards</span>
+						<button class="iw-glbl-add" [disabled]="!newCommand.canExecute()" (click)="newCommand.execute()">
+							<i class="fa fa-plus"></i>
+						</button>
+					</h4>
+				</div>
+				<div class="iw-spacer-top">
+					<div class="panel-collapse collapse in iw-dashboard-name" [ngClass]="{'in': job.DashboardControl.IsOpen}" *ngFor="let dashboard of sortedDashboards()">
+						<div class="iw-dashboard-button iw-name-ellipsis" [ngClass]="{'iw-dashboardname-bold': dashboard === currentDashboard}" (click)="onDashboardClick(dashboard)"
+						 (mouseenter)='onMouseEnter($event)' (mouseleave)='onMouseLeave($event)'>
+							{{dashboard.Name | iwShowSpaces}}
+							<span class="tooltip-modal"> {{dashboard.Name | iwShowSpaces}} </span>
+						</div>
+						<div class="iw-icons-hide" [ngClass]="{'iw-icons-show': dashboard === currentDashboard}">
+							<button class="iw-glbl-menu-btn" [hidden]="!editCommand.canExecute(currentDashboard)" (click)="editCommand.execute(currentDashboard)">
+							<i class="fa fa-pencil iw-icon-align"></i>
+						</button>
+							<button class="iw-glbl-menu-btn" [hidden]="!copyCommand.canExecute(currentDashboard)" (click)="copyCommand.execute(currentDashboard)">
+							<i class="fa fa-clone iw-icon-align"></i>
+						</button>
+							<button class="iw-glbl-menu-btn" [hidden]="!deleteCommand.canExecute(currentDashboard)" (click)="deleteCommand.execute(currentDashboard)">
+								<i class="fa fa-times iw-icon-align"></i>
+							</button>
+						</div>
+					</div>
+					<div class="iw-spacer"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

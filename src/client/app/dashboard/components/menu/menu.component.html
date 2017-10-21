@@ -1,0 +1,46 @@
+﻿
+	<div *ngIf=!isEditModeEnabled>
+		<span>
+		<label> Dashboard: </label>
+	</span>
+		<span>
+		{{dashboardCollection.length !== 0 ? ((currentDashboard === undefined || currentDashboard == null) ? dashboardCollection[0].Name :  currentDashboard.Name) : ''}}
+	</span>
+		<span>
+		<label class="iw-seperatorLine"> | </label>
+	</span>
+		<span *ngIf="editCommand.canExecute(currentDashboard)" class="fa iw-fa-icon-padding fa-pencil iw-edit-icon" (click)="editCommand.execute(currentDashboard)">
+	</span>
+		<span *ngIf="copyCommand.canExecute(currentDashboard)" class="fa iw-fa-icon-padding fa-clone iw-edit-icon" (click)="copyCommand.execute(currentDashboard)">
+	</span>
+		<span *ngIf="deleteCommand.canExecute(currentDashboard)" class="fa iw-fa-icon-padding fa-times iw-edit-icon" (click)="deleteCommand.execute(currentDashboard)">
+	</span>
+	</div>
+	<div *ngIf=isEditModeEnabled>
+		<span>
+		<label>Dashboard:</label>
+	</span>
+		<span>
+		{{currentDashboard.Name}}
+	</span>
+		<span class="iw-seperatorLine">
+		|
+	</span>
+		<span>
+		&nbsp;&nbsp;<label>Add Object Container:</label>
+	</span>
+		<span class="iw-dashboard-menu-dropdown">
+		<select (ngModelChange)="onObjTypeSelectChanged($event)" [(ngModel)]="objectType">
+			<option *ngFor="let object of objectList">
+			{{object}}
+			</option>
+		</select>
+	</span>
+		<span class="button-add">
+		<button (click)="addObjectContainerCommand.execute(objectType)" [disabled]="!addObjectContainerCommand.canExecute(objectType)">Add</button>
+	</span>
+	<span [class.iw-object-border-invalid]="!currentDashboard.IsValid"><i class="fa fa-exclamation-triangle iw-warning"></i></span>
+		<span class="done-button">
+		<button (click)="saveCommand.execute(currentDashboard)" [class.done-button-disabled]="!saveCommand.canExecute(currentDashboard)" [disabled]="!saveCommand.canExecute(currentDashboard)">Done</button>
+	</span>
+	</div>

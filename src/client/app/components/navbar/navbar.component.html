@@ -1,0 +1,19 @@
+<div class="container-fluid iw-navbar">
+    <div class="row">
+        <div class="col-md-9 iw-spanner" x-ms-format-detection="none">
+            <!--We added the superscript manually for this particular location and situation, as applying a registered trademark thru the dev side was posing alignment issues.-->
+            <span class="regtitle navtollfree">{{applicationTitle}} Support: +1 (713) 839-4315</span>
+            <span class="navtollfree">Toll Free: +1 (877) 263-6071</span>
+            <span class="navtollfree"><a href="mailto:{{emailID}}">{{emailID}}</a></span>
+        </div>
+        <div class="col-md-3 right iw-spanner">
+            <span *ngIf="isLoggedIn" class="navbarhelptitle">
+             <!-- Update help link to email to help URL when it become available. This is a temporary fix to be redirected to login screen -->
+                <a class="iw-link" href="/{{helpGuideLink}}" ><i class="fa fa-question-circle-o" aria-hidden="true"></i> Help</a>
+            </span>
+            <span *ngIf="isLoggedIn">
+                <button type="button" class="btn btn-link iw-link" (click)= "confirmSignout()">Sign Out</button>
+            </span>
+        </div>
+    </div>
+</div>

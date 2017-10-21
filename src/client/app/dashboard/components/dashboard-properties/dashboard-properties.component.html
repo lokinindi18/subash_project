@@ -1,0 +1,31 @@
+﻿<form (ngSubmit)="onSave()" [formGroup]="form" autocomplete="off">
+	<div class="common-accordion-control">
+	<iw-accordion>
+		<iw-accordion-group [heading]="'General Properties'">
+	<div class="confirm-msg-div" *ngIf= "isShownMessage">Your changes have been saved.</div>
+	<div class="form-group">
+		<label for="name">Dashboard Name</label>
+		<input type="text" class="form-control" autocomplete="off" maxlength="40" #name="ngForm" [formControl]="form.controls['Name']"
+		(change)="trimDashBoardName($event)" [(ngModel)]="model.newName">
+		<div *ngIf="!name.valid">
+			<div class="iw-inline-error" *ngIf="name.errors.required">
+				Please enter a dashboard name
+			</div>
+			<div class="iw-inline-error" *ngIf="name.errors.maxlength">
+				You have entered the max amount of characters allowed
+			</div>
+			<div class="iw-inline-error" *ngIf="name.errors.unique">
+					{{model.newName}} already exists. Please enter a new dashboard name.
+				</div>
+		</div>
+		<div class="iw-inline-error" *ngIf="error">
+			{{error}}
+		</div>
+	</div>
+		</iw-accordion-group>
+	</iw-accordion>
+	</div>
+	<div class="delete-dashboard-container">
+	<input type="button" value="Delete Dashboard" class="btn btn-default btn-delete-dashboard" [disabled]="!deleteCommand.canExecute(model)" (click)="deleteCommand.execute(model)">
+    </div>	
+</form>

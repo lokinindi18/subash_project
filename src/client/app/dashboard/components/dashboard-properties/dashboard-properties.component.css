@@ -1,0 +1,79 @@
+:host {
+	display: table-cell;
+	width: 275px;
+}
+
+:host .form-group {
+	margin-top: 10px;
+}
+
+:host .form-group input {
+	border-radius: 0;
+	height: 30px;
+	padding: 4px;
+	width: 90%;
+	font-size: 1em;
+	margin-left: 11px;
+	border: 0;
+}
+
+:host .form-group label {
+	color: #ffffff;
+	font-size: 1em;
+	margin-left: 11px;
+	margin-top: 5px;
+}
+
+:host .btn.btn-default {
+	float: right;
+	font-size: 1em;
+	background-color: #d0d0d0;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.delete-dashboard-container {
+	background-color: #5d5a58;
+	border-top: 1px solid #d0d0d0;
+	height: 54px;
+	position: relative;
+	bottom: 0;
+	width: 100%;
+	padding-top: 10px;
+}
+
+.btn-delete-dashboard {
+	background-color: #cc0000 !important;
+	color: #ffffff;
+	position: absolute;
+	left: 12px;
+	width: 90%;
+	margin-top: 10px;
+	font-size: 1.25em !important;
+}
+
+.confirm-msg-div {
+	color: #b4e0be;
+	animation: cssAnimation 0s ease-in 5s forwards;
+	animation-fill-mode: forwards;
+	margin: 10px;
+}
+
+@keyframes cssAnimation {
+	to {
+		width: 0;
+		height: 0;
+		overflow: hidden;
+	}
+}
+
+.iw-inline-error {
+	margin: 11px;
+	width: 90%;
+	border: 1px solid #ababab;
+	background-color: red;
+	color: #ffffff;
+	font-weight: 600;
+	font-style: italic;
+}
+

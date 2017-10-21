@@ -1,0 +1,168 @@
+<div class="iw-well-info-container">
+	<div class="iw-well-information">
+		<div class="iw-well-info-header">
+			<span class="iw-title">Well Information</span>
+			<div class="iw-line"></div>
+		</div>
+		<div class="iw-well-info-columns">
+			<div class="col-sm-3 iw-well-info-left">
+				<div class="row">
+					<div class="col-sm-6 iw-name-field">Customer Name:</div>
+					<div class="col-sm-6 iw-value-field" *ngIf='wellinfoModel.customerName'>{{wellinfoModel.customerName}}</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 iw-name-field">API SN:</div>
+					<div class="col-sm-6 iw-value-field" *ngIf='wellinfoModel.apiSN'>{{wellinfoModel.apiSN}}</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 iw-name-field">Contractor:</div>
+					<div class="col-sm-6 iw-value-field" *ngIf='wellinfoModel.contractor'>{{wellinfoModel.contractor}}</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 iw-name-field">Job Number:</div>
+					<div class="col-sm-6 iw-value-field" *ngIf='wellinfoModel.jobNo'>{{wellinfoModel.jobNo}}</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 iw-name-field">Well ID: </div>
+					<div class="col-sm-6 iw-value-field" *ngIf='wellinfoModel.wellID'>{{wellinfoModel.wellID}}</div>
+				</div>
+
+			</div>
+			<div class="col-sm-3 iw-well-info-middle">
+				<div class="row">
+					<div class="col-sm-4 iw-name-field nopadding">Job Name:</div>
+					<div class="col-sm-8 iw-value-field nopadding" *ngIf='jobName'>{{jobName}}</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 iw-name-field nopadding">Well Name:</div>
+					<div class="col-sm-8 iw-value-field nopadding" *ngIf='wellinfoModel.wellName'>{{wellinfoModel.wellName}}</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 iw-name-field nopadding">Rig Name:</div>
+					<div class="col-sm-8 iw-value-field nopadding" *ngIf='wellinfoModel.rigName'>{{wellinfoModel.rigName}}</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 iw-name-field nopadding">Field Name:</div>
+					<div class="col-sm-8 iw-value-field nopadding" *ngIf='wellinfoModel.fieldName'>{{wellinfoModel.fieldName}}</div>
+				</div>
+
+			</div>
+			<div class="col-sm-3 iw-well-info-address">
+				<div class="row">
+					<div class="col-sm-4 iw-name-field nopadding">County/Area:</div>
+					<div class="col-sm-8 iw-value-field nopadding" *ngIf='wellinfoModel.county'>{{wellinfoModel.county}}</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 iw-name-field nopadding">State/Province:</div>
+					<div class="col-sm-8 iw-value-field nopadding" *ngIf='wellinfoModel.state'>{{wellinfoModel.state}}</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 iw-name-field nopadding">Country:</div>
+					<div class="col-sm-8 iw-value-field nopadding" *ngIf='wellinfoModel.country'>{{wellinfoModel.country}}</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 iw-name-field nopadding">District:</div>
+					<div class="col-sm-8 iw-value-field nopadding" *ngIf='wellinfoModel.district'>{{wellinfoModel.district}}</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 iw-name-field nopadding">Section:</div>
+					<div class="col-sm-8 iw-value-field nopadding" *ngIf='wellinfoModel.section'>{{wellinfoModel.section}}</div>
+				</div>
+
+			</div>
+			<div class="col-sm-3 iw-well-info-latlong">
+				<div class="row">
+					<div class="col-sm-4 iw-name-field nopadding">Latitude: </div>
+					<div class="col-sm-8 iw-value-field nopadding" *ngIf='wellinfoModel.latitude'>{{wellinfoModel.latitude}} </div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 iw-name-field nopadding">Longitude: </div>
+					<div class="col-sm-8 iw-value-field nopadding" *ngIf='wellinfoModel.longitude'>{{wellinfoModel.longitude}} </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="iw-well-details">
+		<div class="iw-well-details-header">
+			<span class="iw-title">Well Details</span>
+			<span class="pull-right iw-unit-set" *ngIf='unitSet'>Unit Set: {{unitSet}}</span>
+			<span class="pull-right iw-unit-set" *ngIf='!unitSet'>Unit Set:</span>
+			<div class="iw-line"></div>
+		</div>
+		<div class="iw-well-info-columns">
+			<div class="col-sm-3 iw-well-details-left">
+				<div class="row">
+					<div class="col-sm-4 iw-name-field nopadding">Spud Date: </div>
+					<div class="col-sm-8 iw-value-field nopadding" *ngIf='wellinfoModel.spudDate'>{{wellinfoModel.spudDate}} </div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 iw-name-field nopadding">Start Date:</div>
+					<div class="col-sm-8 iw-value-field nopadding" *ngIf='wellinfoModel.startDate'>{{wellinfoModel.startDate}}</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 iw-name-field nopadding">End Date: </div>
+					<div class="col-sm-8 iw-value-field nopadding" *ngIf='wellinfoModel.endDate'>{{wellinfoModel.endDate}}</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 iw-name-field nopadding">Start Depth: </div>
+					<div class="col-sm-8 iw-value-field nopadding" *ngIf='wellinfoModel.startDepth'>{{wellinfoModel.startDepth}}</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 iw-name-field nopadding">End Depth: </div>
+					<div class="col-sm-8 iw-value-field nopadding" *ngIf='wellinfoModel.endDepth'>{{wellinfoModel.endDepth}}</div>
+				</div>
+			</div>
+			<div class="col-sm-3 iw-well-details-middle">
+				<div class="row">
+					<div class="col-sm-8 iw-name-field nopadding">Permanent Datum: </div>
+					<div class="col-sm-4 iw-value-field nopadding" *ngIf='wellinfoModel.permanentDatum'>{{wellinfoModel.permanentDatum}}</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 iw-name-field nopadding">Elevation: </div>
+					<div class="col-sm-8 iw-value-field nopadding" *ngIf='wellinfoModel.elevation'>{{wellinfoModel.elevation}}</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-8 iw-name-field nopadding">Height Above PD: </div>
+					<div class="col-sm-4 iw-value-field nopadding" *ngIf='wellinfoModel.heightAbovePD'>{{wellinfoModel.heightAbovePD}}</div>
+				</div>
+			</div>
+			<div class="col-sm-3 iw-well-details-elevation">
+				<div class="row">
+					<div class="col-sm-6 iw-name-field nopadding">KB Elevation: </div>
+					<div class="col-sm-6 iw-value-field nopadding" *ngIf='wellinfoModel.kbElevation'>{{wellinfoModel.kbElevation}}</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 iw-name-field nopadding">DF Elevation: </div>
+					<div class="col-sm-6 iw-value-field nopadding" *ngIf='wellinfoModel.dfElevation'>{{wellinfoModel.dfElevation}}</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 iw-name-field nopadding">GL Elevation: </div>
+					<div class="col-sm-6 iw-value-field nopadding" *ngIf='wellinfoModel.glElevation'>{{wellinfoModel.glElevation}}</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 iw-name-field nopadding">WD Elevation: </div>
+					<div class="col-sm-6 iw-value-field nopadding" *ngIf='wellinfoModel.wdElevation'>{{wellinfoModel.wdElevation}}</div>
+				</div>
+			</div>
+			<div class="col-sm-3 iw-well-details-headutm">
+				<div class="row">
+					<div class="col-sm-6 iw-name-field nopadding">Well Head N/S: </div>
+					<div class="col-sm-6 iw-value-field nopadding" *ngIf='wellinfoModel.wellHeadNS'>{{wellinfoModel.wellHeadNS}}</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 iw-name-field nopadding">Well Head E/W: </div>
+					<div class="col-sm-6 iw-value-field nopadding" *ngIf='wellinfoModel.wellHeadEW'>{{wellinfoModel.wellHeadEW}}</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 iw-name-field nopadding">UTM X: </div>
+					<div class="col-sm-6 iw-value-field nopadding" *ngIf='wellinfoModel.utmX'>{{wellinfoModel.utmX}}</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 iw-name-field nopadding">UTM Y: </div>
+					<div class="col-sm-6 iw-value-field nopadding" *ngIf='wellinfoModel.utmyY'>{{wellinfoModel.utmyY}}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

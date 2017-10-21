@@ -1,0 +1,68 @@
+:host {
+	width: 275px;
+	height: 100%;
+	background-color: #5d5a58;
+	position: relative;
+	border-left: 2px solid #474747;
+}
+
+.iw-property-menu-title {
+	display: table;
+	width: 275px;
+	background-color: #474747;
+	color: #ffffff;
+	padding: 0 40px 0 15px;
+	height: 43px;
+	font-size: 1.125em;
+	cursor: pointer;
+}
+
+.iw-property-menu-title-collapsed {
+	transform: rotate(90deg);
+	transform-origin: right bottom;
+	position: absolute;
+	width: 200px;
+	right: 45px;
+	top: 157px;
+	white-space: nowrap;
+	padding: 0 0 0 15px;
+}
+
+.iw-property-menu-title > span {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.iw-property-menu-title > span:last-of-type {
+	text-align: right;
+}
+
+.iw-hide-property {
+	display: none;
+}
+
+.iw-property-menu-title.iw-property-menu-title-normal {
+	border-bottom: none;
+}
+
+.iw-property-menu-title > span {
+	padding-left: 5px;
+}
+
+.iw-property-menu-title-normal i.fa.fa-forward {
+	display: block;
+	font-size: 0.8em;
+	position: relative;
+	left: 25px;
+}
+
+.iw-property-menu-title-collapsed i.fa.fa-forward {
+	display: none;
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	.iw-property-menu-title-collapsed {
+		right: 45px;
+		top: 158px;
+	}
+}

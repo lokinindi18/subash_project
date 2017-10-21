@@ -1,0 +1,35 @@
+<form (ngSubmit)="onSave()" (keydown.enter)="$event.preventDefault();" [formGroup]="form" autocomplete="off">
+	<div class="confirm-msg-div" *ngIf="isShownMessage">Your changes have been saved.</div>
+	<div class="common-accordion-control">
+	<iw-accordion>
+		<iw-accordion-group [heading]="'General Properties'">
+			<div class="content-div">
+				<div class="form-group">
+					<label for="name">Object Container Label</label>
+					<input type="text" class="form-control containerinput" maxlength="25" #name="ngForm" [formControl]="form.controls['Name']"
+					(change)="trimContainerName($event)" [(ngModel)]="model.Name">
+					
+					<div *ngIf="!name.valid">
+						<div class="iw-inline-error" *ngIf="name.errors.required">
+							Please enter a container name.
+						</div>
+						<div class="iw-inline-error" *ngIf="name.errors.maxlength">
+							Container name has a max of 25 characters.
+						</div>
+					</div>
+					<input type="button" class="btn btn-add add" value="Add Object" *ngIf="showAddButton(model)" [disabled]="!addCommand.canExecute(model)" (click)="addCommand.execute(model)">
+				</div>
+				<div class="iw-inline-error" *ngIf="error">
+					{{error}}
+				</div>
+				
+			</div>
+		</iw-accordion-group>
+	</iw-accordion>
+	</div>
+	<div class="delete-property-container">
+		<input type="button" class="btn btn-primary btn-delete-container" value="Delete Object Container" [disabled]="!deleteCommand.canExecute(model)"
+			(click)="deleteCommand.execute(model)">
+	</div>
+
+</form>

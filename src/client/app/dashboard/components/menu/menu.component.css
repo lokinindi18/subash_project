@@ -1,0 +1,93 @@
+:host {
+	display: inline-block;
+	border-bottom: 1px solid #747474;
+	height: 43px;
+	width: 100%;
+	padding-top: 18px;
+	padding-left: 21px;
+	padding-right: 10px;
+	background-color: #ffffff;
+}
+
+.done-button {
+	float: right;
+	margin-top: -1px;
+}
+
+.done-button-disabled {
+	background-color: #cccccc !important;
+	display: inline-block;
+}
+
+:host div {
+	padding-top: 0;
+	position: relative;
+	bottom: 7px;
+}
+
+:host div span,
+:host div span label {
+	font-size: 1.05em;
+}
+
+:host div span button {
+	width: 70px;
+	height: 24px;
+	text-align: center;
+	background-color: #6a6a6a;
+	color: #ffffff;
+	border: none;
+}
+
+.iw-fa-icon-padding {
+	padding-left: 10px;
+}
+
+.iw-seperatorLine {
+	font-size: 1.4em;
+	margin-left: 11px;
+	margin-right: 2px;
+}
+
+.iw-edit-icon {
+	cursor: pointer;
+}
+
+.iw-dashboard-menu-dropdown {
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+select.ng-pristine.ng-valid.ng-touched {
+	height: 25px;
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	/* IE10+ specific styles go here */
+	:host {
+		top: -7px;
+		position: relative;
+	}
+
+	.iw-global-menu-title-collapsed {
+		right: 43px;
+		top: 168px;
+	}
+}
+
+.iw-object-border-invalid {
+	font-size: 0.8em;
+	position: absolute;
+	right: 55px;
+}
+
+.iw-dashboard-menu-dropdown select {
+	height: 25px !important;
+	margin-top: -2px;
+	width: 120px;
+}
+
+span.button-add button {
+	margin-left: 5px;
+	margin-top: -1px;
+}

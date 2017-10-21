@@ -1,0 +1,84 @@
+header {
+	background-color: #cc0000;
+	padding: 8px 15px 8px 25px;
+	color: #ffffff;
+	border-bottom: 1px solid #b6b6b6;
+	font-size: 1.45em;
+	display: table;
+	width: 100%;
+}
+
+header > span {
+	display: table-cell;
+}
+
+header > span:last-of-type {
+	text-align: right;
+}
+
+content {
+	padding: 40px 0 60px 30px;
+	display: block;
+	font-size: 1.25em;
+}
+
+footer {
+	background-color: #eeeeee;
+	border-top: 1px solid #b6b6b6;
+	text-align: right;
+	padding: 15px;
+}
+
+footer > .btn {
+	margin-left: 10px;
+}
+
+.required {
+	color: red;
+	float: left;
+	margin-top: 7px;
+}
+
+.form-group {
+	margin-top: 23px;
+	margin-bottom: -5px;
+	display: inline-block;
+}
+
+.lbl-dashboard-name {
+	float: left;
+	margin-top: 3px;
+	margin-left: 3px;
+	font-size: 1em;
+}
+
+.iw-dashbaord-name {
+	float: left;
+	width: 350px;
+	margin-left: 10px;
+}
+
+.iw-close-icon {
+	cursor: pointer;
+}
+
+.iw-inline-error {
+	margin-top: 45px;
+	margin-bottom: -10px;
+	margin-right: 0;
+}
+
+.iw-inline-error.message {
+	margin-right: 69px;
+}
+
+.lbl-enter-name {
+	font-size: 1.3em;
+}
+
+span.createdashboardtitle.regtitle::after {
+	color: #ffffff;
+	font-size: 13px;
+	left: 43px;
+	top: -4px;
+}

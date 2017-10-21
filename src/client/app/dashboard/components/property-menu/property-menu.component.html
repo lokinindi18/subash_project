@@ -1,0 +1,9 @@
+﻿
+	<div class="iw-property-menu-title" (click)="toggleMenu()" [ngClass]="{'iw-property-menu-title-normal': !isCollapsed, 'iw-property-menu-title-collapsed': isCollapsed}">
+		<span>{{propertyType}}</span>
+		<span><i class="fa fa-forward"></i></span>
+	</div>
+	<div [ngClass]="{'iw-hide-property': isCollapsed}">
+		<div #menuContainer>
+		</div>
+	</div>

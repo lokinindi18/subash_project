@@ -1,0 +1,215 @@
+:host {
+	cursor: default;
+	display: inline-block;
+	position: relative;
+}
+
+.col-sm-3 {
+	border-color: black;
+	border-width: 2px;
+	background-color: #cccccc;
+	width: auto;
+}
+
+.col-sm-3.iw-container-width {
+	min-width: 160px;
+}
+
+.panel-heading {
+	margin: 0;
+	padding: 6px;
+}
+
+.panel-heading .iw-add-button {
+	position: relative;
+	top: 0;
+	width: 20px;
+	height: 20px;
+	right: -2px;
+	float: right;
+}
+
+.iw-model-name {
+	min-width: 144px;
+	display: inline;
+	margin-right: 25px;
+}
+
+.iw-glbl-add {
+	/* min-width: 30px; */
+
+	background: none;
+	border: none;
+
+	/* position: absolute;
+	top: 8px;
+	right: 20px; */
+
+	cursor: pointer;
+}
+
+.iw-maximize-button {
+	width: 20px;
+	height: 20px;
+	float: right;
+	right: 2px;
+	position: relative;
+}
+
+.iw-maximize {
+	min-width: 30px;
+	background: none;
+	border: none;
+
+	/* position: absolute;
+	top: 8px;
+	right: -2px; */
+
+	cursor: pointer;
+}
+
+.iw-glbl-add:focus,
+.iw-maximize:focus {
+	outline: 0;
+}
+
+.iw-edit-icon {
+	float: right;
+	min-width: 30px;
+	background: none;
+	border: none;
+}
+
+.panel {
+	margin-bottom: 0;
+	background-color: #f9f9f9;
+	border-radius: 0;
+}
+
+/* .rectangle {
+	display: flex;
+	background-color: #fd4140;
+	border: solid 1px #121621;
+	color: #121621;
+	margin: auto;
+} */
+
+.iw-container-width {
+	min-width: 180px;
+	min-height: 60px !important;
+	margin: 5px;
+}
+
+.iw-object-border {
+	height: 100%;
+}
+
+.col-lg-1,
+.col-lg-10,
+.col-lg-11,
+.col-lg-12,
+.col-lg-2,
+.col-lg-3,
+.col-lg-4,
+.col-lg-5,
+.col-lg-6,
+.col-lg-7,
+.col-lg-8,
+.col-lg-9,
+.col-md-1,
+.col-md-10,
+.col-md-11,
+.col-md-12,
+.col-md-2,
+.col-md-3,
+.col-md-4,
+.col-md-5,
+.col-md-6,
+.col-md-7,
+.col-md-8,
+.col-md-9,
+.col-sm-1,
+.col-sm-10,
+.col-sm-11,
+.col-sm-12,
+.col-sm-2,
+.col-sm-3,
+.col-sm-4,
+.col-sm-5,
+.col-sm-6,
+.col-sm-7,
+.col-sm-8,
+.col-sm-9,
+.col-xs-1,
+.col-xs-10,
+.col-xs-11,
+.col-xs-12,
+.col-xs-2,
+.col-xs-3,
+.col-xs-4,
+.col-xs-5,
+.col-xs-6,
+.col-xs-7,
+.col-xs-8,
+.col-xs-9 {
+	position: relative;
+	min-height: 1px;
+	padding-right: 0;
+	padding-left: 0;
+}
+
+/* container header style */
+.panel-success > .panel-heading {
+	color: #747474;
+	background-color: #ffffff;
+	border-color: #cccccc;
+	position: relative;
+	z-index: 10;
+	cursor: move;
+	background-image: none !important;
+}
+
+.panel-body {
+	padding: 0;
+	min-height: 60px;
+	border-width: 0;
+	background-color: #ffffff;
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+}
+
+.objectsparent {
+	float: left;
+}
+.iw-object-border.dragdiv {
+	cursor: move;
+}
+.resizablediv .panel-body {
+	min-width: 190px;
+	display: inline-block;
+}
+.resizablediv {
+	min-width: 192px;
+	float: left;
+}
+
+.gu-transit {
+	opacity: 0.4;
+}
+
+.gu-mirror {
+	position: fixed !important;
+	margin: 0 !important;
+	z-index: 9999 !important;
+	opacity: 0.9;
+	cursor: move;
+}
+
+.iw-container-zIndex {
+	z-index: 0;
+}
+
+.iw-container-width.iw-object-border-selection {
+	border: 2px solid #cccccc;
+}

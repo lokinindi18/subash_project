@@ -1,0 +1,10 @@
+<div [class.iw-dashboard-border-invalid]="Model && !Model.IsCurrentModelValid" [class.iw-max-width-full]="isCollapsed && isDragEnabled" class="container-fluid iw-full-height iw-dashboard-maxsize" (click)="onSelected($event)" id="maxwidth">
+	<div class="iw-canvas-maxheight">
+	<div *ngIf = "currentDashBoard" [dragula]='"container-bag"' [dragulaModel]='currentDashBoard.Objects'>
+		<div *ngFor="let containerModel of currentDashBoard.Objects; let i=index" class="containerParent">
+			<iw-dashboard-container [Model]="containerModel">
+			</iw-dashboard-container>
+		</div>
+	</div>
+	</div>
+</div>

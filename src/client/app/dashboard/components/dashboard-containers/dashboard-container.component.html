@@ -1,0 +1,40 @@
+<div class="col-sm-3 iw-container-width iw-container-zIndex iw-container-bringFront" #containerParentBody [ngStyle]="style" (click)="objectContainerSelected($event)" [class.iw-object-border-selection]="isSelected">
+	<div class="iw-object-border" [class.iw-object-border-invalid]="!Model.IsCurrentModelValid">
+		<i class="fa fa-exclamation-triangle iw-warning"></i>
+	</div>
+	<div #containerBody class="panel panel-success dashboard-max-width" [class.resizableplot]="Model.ContainsType.indexOf('Plot')!==-1 || Model.ContainsType.indexOf('XY Plot')!==-1 || Model.ContainsType.indexOf('Table')!==-1"
+	 [class.resizablediv]="Model.ContainsType.indexOf('Gauge') !== -1 || Model.ContainsType.indexOf('Data Panel') !== -1 || Model.ContainsType.indexOf('LED') !== -1 || Model.ContainsType.indexOf('Horizontal Bar')!== -1 || Model.ContainsType.indexOf('Vertical Bar')!== -1">
+		<div class="panel-heading">
+			<div class="iw-model-name">{{Model.Name}}</div>
+			<div class="iw-maximize-button" *ngIf="isEditEnable && !isAutoMode" >
+				<button class="iw-maximize" (click)="setContainerMax(Model)">
+					<i class="fa fa-window-maximize"></i>
+				</button>
+			</div>
+			<div class="iw-add-button" *ngIf="addCommand.canExecute(Model) && showAddIcon(Model)" >
+				<button class="iw-glbl-add" (click)="addCommand.execute(Model)">
+				<i class="fa fa-plus"></i>
+				</button>
+			</div>
+		</div>
+		<div class="panel-body" #panelBody [dragula]='"object-bag"' [dragulaModel]='Model.Objects'>
+			<span *ngFor="let objectModel of Model.Objects; let i=index" class="objectsparent">
+				<iw-data-panel *ngIf="Model.ContainsType.indexOf('Data Panel') !== -1" [Model]="objectModel">
+				</iw-data-panel>
+				<iw-gauge *ngIf="Model.ContainsType.indexOf('Gauge') !== -1" [Model]="objectModel">
+				</iw-gauge>
+				<iw-led *ngIf="Model.ContainsType.indexOf('LED') !== -1" [Model]="objectModel">
+				</iw-led>
+				<iw-horizontalbar *ngIf="Model.ContainsType.indexOf('Horizontal Bar')!== -1" [Model]="objectModel">	
+				</iw-horizontalbar>
+				<iw-verticalbar *ngIf="Model.ContainsType.indexOf('Vertical Bar')!== -1" [Model]="objectModel">
+				</iw-verticalbar>
+				<iw-xy-plot *ngIf="Model.ContainsType.indexOf('XY Plot')!==-1" [Model]="objectModel" [Container]="containerBody">
+				</iw-xy-plot>
+				<iw-table *ngIf="Model.ContainsType.indexOf('Table')!==-1" [Model]="objectModel" [Container]="containerBody">
+				</iw-table>
+				<iw-plot *ngIf="Model.ContainsType.indexOf('Plot')!==-1 && Model.ContainsType.indexOf('XY')==-1" [Model]="objectModel" [showPlotSettings]="isPlotMinimized" [Container]="containerBody">
+				</iw-plot>
+			</span>
+		</div>
+	</div>

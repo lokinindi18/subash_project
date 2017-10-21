@@ -1,0 +1,55 @@
+:host {
+	width: 100%;
+	height: 100%;
+	background-position: -8px -8px;
+	display: table-cell;
+	vertical-align: top;
+}
+
+.iw-full-height {
+	border: 1px solid transparent;
+}
+
+.iw-dashboard-border-invalid {
+	border-color: #cc0000;
+}
+
+.container-fluid.iw-full-height > div > div {
+	cursor: default !important;
+}
+
+* {
+	box-sizing: border-box;
+}
+.containerParent {
+	float: left;
+}
+
+.gu-transit {
+	opacity: 0.4;
+}
+
+.gu-mirror {
+	position: fixed !important;
+	margin: 0 !important;
+	z-index: 9999 !important;
+	opacity: 0.9;
+	cursor: move;
+}
+
+.iw-dashboard-maxsize {
+	width: 98%;
+	float: left;
+	height: 100%;
+	position: relative;
+	border: 0 !important;
+}
+
+.iw-dashboard-maxsize.iw-max-width-full {
+	padding-right: 40px;
+}
+
+.iw-canvas-maxheight {
+	float: left;
+	margin: 0 0 200px 0;
+}

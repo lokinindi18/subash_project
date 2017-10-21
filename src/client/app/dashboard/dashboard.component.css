@@ -1,0 +1,42 @@
+:host {
+	width: 100%;
+	height: 100%;
+	display: table;
+}
+
+.iw-dashboard {
+	display: table-cell;
+	height: 40px;
+	background-color: #eff0f0;
+}
+
+.iw-dashboard-area {
+	width: 100%;
+	height: 95%;
+	display: table;
+	background-color: #eff0f0;
+	padding-left: 37px;
+}
+
+.iw-dashboard-area-align {
+	padding-left: 0;
+}
+
+.iw-menu-align {
+	padding-left: 58px;
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	.iw-dashboard-area {
+		margin-top: -5px;
+	}
+	.iw-ieBrowser {
+		vertical-align: top;
+	}
+}
+
+@-moz-document url-prefix() {
+	.iw-dashboard {
+		display: table-cell;
+	}
+}

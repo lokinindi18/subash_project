@@ -1,0 +1,24 @@
+.iw-banner {
+	background-color: #cc0000;
+	padding: 25px 35px;
+}
+
+.iw-logo {
+	height: 20px;
+}
+
+.iw-title {
+	color: #ffffff;
+	text-align: right;
+	font-size: 20pt;
+	margin: -10px;
+	padding-right: 4px;
+}
+
+span.bannerbartitle.regtitle::after {
+	color: #ffffff;
+	font-size: 18px;
+	left: auto;
+	right: 82px !important;
+	top: -1px;
+}

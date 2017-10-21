@@ -1,0 +1,83 @@
+.confirm-msg-div {
+	color: #b4e0be;
+	animation: cssAnimation 0s ease-in 5s forwards;
+	animation-fill-mode: forwards;
+	margin: 10px;
+}
+
+.form-group label {
+	color: #ffffff;
+	font-size: 1em;
+	margin-top: 15px;
+	margin-right: 10px;
+	margin-bottom: 5px;
+	margin-left: 10px;
+}
+
+.form-group input.containerinput {
+	margin-left: 10px;
+	width: 90%;
+	height: 30px;
+	border-radius: 0;
+	border: 0;
+}
+
+.form-group .add {
+	float: right;
+	margin: 18px 17px 18px 10px;
+	background-color: #eaeaea;
+	color: #333333;
+	font-size: 1em;
+}
+
+.btn-add {
+	padding: 5px 9px 4px 6px;
+	min-width: 85px;
+	min-height: 20px;
+	background-color: #f9f9f9;
+	color: #333333;
+	font-weight: lighter;
+}
+
+.btn-add.focus,
+.btn-add:focus,
+.btn-add:hover,
+.btn-add.hover,
+.btn-add:active,
+.btn-add.active,
+.focus.btn-add {
+	background-color: #ffffff !important;
+	color: #333333 !important;
+	font-weight: lighter;
+	border-color: transparent;
+}
+
+.delete-property-container {
+	background-color: #5d5a58;
+	border-top: 1px solid #d0d0d0;
+	height: 54px;
+	position: relative;
+	bottom: 0;
+	width: 100%;
+	padding-top: 10px;
+}
+
+.btn-delete-container {
+	background-color: #cc0000 !important;
+	color: #ffffff;
+	position: absolute;
+	left: 12px;
+	width: 90%;
+	margin-top: 10px;
+	font-size: 1.25em !important;
+}
+
+.iw-inline-error {
+	margin: 11px;
+	width: 90%;
+	border: 1px solid #dc0000;
+	background-color: #cc0000;
+	color: #ffffff;
+	font-weight: normal;
+	text-align: center;
+}

@@ -1,0 +1,146 @@
+.iw-well-info-container {
+	height: 500px;
+	width: 100%;
+
+	/* min-width: 1366px; */
+
+	padding: 10px 0 0 0;
+}
+
+.iw-well-info-header {
+	height: 30px;
+}
+
+.iw-well-information {
+	height: 200px;
+	margin-left: 25px;
+}
+
+.iw-well-info-left {
+	height: 150px;
+	padding-left: 0 !important;
+}
+
+.iw-well-info-middle {
+	height: 150px;
+	margin-left: 10px;
+}
+
+.iw-well-info-address {
+	height: 150px;
+	margin-left: 20px;
+}
+
+.iw-well-info-latlong,
+.iw-well-details-headutm {
+	height: 150px;
+	float: right;
+	margin-right: -30px;
+}
+
+.iw-well-details {
+	height: 200px;
+	margin-top: 25px;
+	margin-left: 25px;
+}
+
+.iw-well-details-header {
+	height: 30px;
+}
+
+.iw-well-details-left {
+	height: 150px;
+	padding-left: 0 !important;
+}
+.iw-well-details-middle {
+	height: 150px;
+	margin-left: 10px;
+}
+.iw-well-details-elevation {
+	height: 150px;
+	margin-left: 20px;
+}
+
+.iw-line {
+	background-color: #ababab;
+	height: 1px;
+	width: 100%;
+	margin-top: 5px;
+}
+
+.iw-well-details-header .iw-line {
+	height: 1px;
+}
+
+.iw-title {
+	align-content: center;
+	font-size: 1.125em;
+	color: #747474;
+	margin-left: 10px;
+	display: inline-block;
+	width: 77%;
+}
+
+.iw-name-field {
+	height: 30px;
+	vertical-align: middle;
+	display: table-cell;
+	color: #747474;
+	width: 125px;
+}
+
+.iw-value-field {
+	height: 30px;
+	vertical-align: middle;
+	font-weight: bold;
+	display: table-cell;
+	color: #747474;
+}
+
+.col-sm-3 {
+	border-color: black;
+	border-width: 2px;
+}
+
+.nopadding {
+	padding-right: 0 !important;
+}
+
+.iw-well-info-columns {
+	margin-top: 10px;
+	height: 100%;
+	padding: 10px;
+}
+
+.iw-unit-set {
+	width: 21%;
+	display: inline-block;
+}
+
+.iw-well-info-middle .iw-value-field {
+	margin-left: -10px;
+}
+
+.iw-well-info-left .iw-value-field {
+	margin-left: -10px;
+}
+
+.iw-well-info-latlong .iw-value-field {
+	margin-left: -18px;
+}
+
+.iw-well-details-elevation .iw-value-field.nopadding {
+	margin-left: -40px;
+}
+
+.iw-well-info-address .iw-value-field {
+	padding-left: 20px;
+}
+
+.iw-well-details-left .iw-value-field {
+	margin-left: -15px;
+}
+
+.col-sm-8 {
+	width: 50%;
+}

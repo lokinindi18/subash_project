@@ -1,0 +1,340 @@
+<div class="iw-exporter-container">
+	<div class="iw-exporter-settings">
+		<span class="iw-title">Export Settings</span>
+		<label class="iw-title well-name">Well Name: {{exporterModel.WellName}}</label>
+		<div class="iw-line"></div>
+		<div class="iw-exporter-accordion">
+			<div class="iw-data-settings">
+				<div class="iw-settings-header" [ngClass]="{'iw-collapsed-header': dataSettings.hidden}" (click)="dataSettings.hidden = !dataSettings.hidden">
+					<i class="fa" [ngClass]="{'fa-caret-down': !dataSettings.hidden, 'fa-caret-right': dataSettings.hidden}"></i>
+					<span class="iw-title">Data Settings</span>
+					<div [hidden]="!isTimeBasedIV" class="iw-settings-header-details">
+						<span>Start Time: {{StartTimeRangeForDispaly}}</span>
+						<span>End Time: {{EndTimeRangeForDispaly}}</span>
+					</div>
+					<div [hidden]="isTimeBasedIV" class="iw-settings-header-details">
+						<span>Start Depth: {{exporterModel.StartDepthRange}} {{exporterModel.StartDepthUnit}}</span>
+						<span>End Depth: {{exporterModel.EndDepthRange}} {{exporterModel.EndDepthUnit}}</span>
+					</div>
+				</div>
+				<div class="iw-exporter-body" #dataSettings>
+					<div class="iw-line"></div>
+					<div class="iw-data-settings-section">
+						<div class="iw-row">
+							<div class="row">
+							<div class="col-sm-3 left-content iw-marginbottom">
+								<label>Independent Variable Type:</label>
+								<select [(ngModel)]="exporterModel.IVType" (change)="onIVTypeChange()">
+									<option [ngValue]="ivtype.value" *ngFor="let ivtype of ivTypeList">
+										{{ivtype.name}}
+									</option>
+								</select>
+							</div>
+							<div *ngIf="isWireLine" [ngClass]="{'iw-pass-value-td col-sm-3': exporterModel.IVType === 'T&D', 'right-content iw-pass-value-other-ivtype': exporterModel.IVType !== 'T&D'}">
+								<label>Pass:</label>
+								<select [(ngModel)]="exporterModel.pass" (change)="onPassTypeChange()">
+									<option [ngValue]="pass" *ngFor="let pass of passList">
+										{{pass.PassName}}
+									</option>
+								</select>
+							</div>
+							<div [ngClass]="{'iw-marginbottom':isWireLine,'iw-td-format col-sm-3':isWireLine}" class="right-content">
+								<div [hidden]="!isTimeBasedIV">
+									<label>Time & Date Format:</label>
+									<select [(ngModel)]="exporterModel.TimeFormat">
+										<option *ngFor="let format of timeFormats">
+											{{format}}
+										</option>
+									</select>
+								</div>
+							</div>
+							</div>
+						</div>
+						<div class="iw-row">
+							<div class="left-content" [ngClass]="{'iw-depth-input': !isTimeBasedIV}">
+								<div [hidden]="!isTimeBasedIV">
+									<div class="iw-start-time">
+										<div class="iw-axis-viewtypedate iw-axis-datepicker iw-exportpage">
+											<label>Start Time:</label>
+											<my-date-picker #startDatePicker style='height: 23px;' id="date" [options]="myDatePickerOptions" (inputFieldChanged)="onStartDateChanged($event)"></my-date-picker>
+										</div>
+										<div class="iw-axis-viewtypetime" iwClickOutside (clickOutside)="outsideCliked()">
+											<input type="text" [(ngModel)]='exporterModel.StartTime' (ngModelChange)="startTimeTouched = true;lastTouchedTime = 'StartDate'"
+											/>
+											<span class="arrow" (click)="startTimeDropDownToggle($event)"></span>
+											<div class="iw-time-dropdown" [ngClass]="{'iw-time-dropdown-open':showStartDropDown,'iw-time-dropdown-close':!showStartDropDown}">
+												<ul>
+													<li *ngFor="let time of timeValueList; let i = index" (click)="setStartTime(time)">{{ time }}</li>
+												</ul>
+											</div>
+											<select class="iw-time-ampm" [(ngModel)]="exporterModel.StartTimePeriod" (ngModelChange)="lastTouchedTime = 'StartDate';startTimeTouched = true">
+												<option> AM </option>
+												<option> PM </option>
+											</select>
+										</div>
+									</div>
+									<div class="iw-alignleft iw-exporter-page-error" *ngIf="startTimeTouched && startTimeError">
+										{{startTimeError}}
+									</div>
+									<div class="iw-end-time">
+										<div class="iw-axis-viewtypedate iw-axis-datepicker iw-exportpage">
+											<label>End Time:</label>
+											<my-date-picker #endDatePicker style='height: 23px; width:122px;' id="date" [options]="myDatePickerOptions" (inputFieldChanged)="onEndDateChanged($event)"></my-date-picker>
+										</div>
+										<div class="iw-axis-viewtypetime" iwClickOutside (clickOutside)="outsideCliked()">
+											<input type="text" [(ngModel)]='exporterModel.EndTime' (ngModelChange)="endTimeTouched = true;lastTouchedTime = 'EndDate'"
+											/>
+											<span class="arrow" (click)="endTimeDropDownToggle($event)"></span>
+											<div class="iw-time-dropdown" [ngClass]="{'iw-time-dropdown-open':showDropDown,'iw-time-dropdown-close':!showDropDown}">
+												<ul>
+													<li *ngFor="let time of timeValueList; let i = index" (click)="setEndTime(time)">{{ time }}</li>
+												</ul>
+											</div>
+											<select class="iw-time-ampm" [(ngModel)]="exporterModel.EndTimePeriod" (ngModelChange)="lastTouchedTime = 'EndDate';endTimeTouched = true">
+												<option> AM </option>
+												<option> PM </option>
+											</select>
+										</div>
+									</div>
+									<div class="iw-alignleft iw-exporter-page-error" *ngIf="endTimeTouched && endTimeError">
+										{{endTimeError}}
+									</div>
+								</div>
+								<div [hidden]="isTimeBasedIV" class="iw-alignleft">
+									<div>
+										<label>Start Depth:</label>
+										<input class="exporter-input" [iwNumericInput]="true" type="text" [ngModel]="exporterModel.StartDepth" (NumericResponseGenerated)="onStartDepthChange($event)"
+										 (ngModelChange)="startDepthTouched = true;lastTouchedDepth = 'start'" class="exporter-input">
+									</div>
+									<div class="iw-exporter-page-error" *ngIf="startDepthTouched && startDepthError">
+										{{startDepthError}}
+									</div>
+									<div>
+										<label class="end-depth">End Depth:</label>
+										<input class="exporter-input" [iwNumericInput]="true" type="text" [ngModel]="exporterModel.EndDepth" (NumericResponseGenerated)="onEndDepthChange($event)"
+										 (ngModelChange)="endDepthTouched = true;lastTouchedDepth = 'end'" class="exporter-input">
+									</div>
+									<div class="iw-exporter-page-error" *ngIf="endDepthTouched && endDepthError">
+										{{endDepthError}}
+									</div>
+								</div>
+							</div>
+							<div class="right-content">
+								<div class="iw-data-settingsradio">
+									<input type="radio" name="dataSetting" [(ngModel)]="exporterModel.DataPoint" [value]="true">
+									<label>Every Data Point</label>
+								</div>
+								<div class="iw-data-settingsradio">
+									<input type="radio" name="dataSetting" class="iw-control-with-text" [(ngModel)]="exporterModel.DataPoint" [value]="false">
+									<label>Even Intervals:</label>
+									<input [iwNumericInput]="true" type="text" class="exporter-input-short" [disabled]="exporterModel.DataPoint" [ngModel]="exporterModel.EvenIntervalValue"
+									 (NumericResponseGenerated)="onEvenIntervalValueChange($event)">
+									<label>{{exporterModel.EvenIntervalUnit}}</label>
+								</div>
+								<div class="iw-data-settingsradio iw-exporter-page-error" *ngIf="!exporterModel.DataPoint && (exporterModel.EvenIntervalValue > 9999 || exporterModel.EvenIntervalValue === null)">
+									Please enter a value between 0 and 9999.
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="iw-exporter-select-variables">
+				<div class="iw-settings-header" [ngClass]="{'iw-collapsed-header': selectVariables.hidden}" (click)="selectVariables.hidden = !selectVariables.hidden">
+					<i class="fa" [ngClass]="{'fa-caret-down': !selectVariables.hidden, 'fa-caret-right': selectVariables.hidden}"></i>
+					<span class="iw-title">Select Variables</span>
+				</div>
+				<div class="iw-exporter-body" #selectVariables>
+					<div class="iw-line"></div>
+					<div class="iw-exporter-variable-section">
+						<div class="iw-picklist">
+							<div class="multiple-select-parent">
+								<div class="row">
+									<div class="col-sm-12">Available Variables</div>
+								</div>
+								<div class="multiple-select">
+									<div class="ul-header" [class.iw-selected-variable-span]="isCollapsed">
+										<span>Variable</span>
+										<span>Table</span>
+										<span>Mnemonic</span>
+									</div>
+									<div class="scrolldiv">
+										<ul>
+											<li *ngFor="let item of available" id={{item.id}} (click)="toggleSelect($event, item) ">
+												<span>{{item.name}}</span>
+												<span>{{item.table}}</span>
+												<span>{{item.mnemonic}}</span>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="opn-btns">
+								<button [disabled]="available.length === 0" (click)="import()"><i class="fa fa-arrow-right fa-3"></i></button>
+								<button [disabled]="selected.length === 0" (click)="remove()"><i class="fa fa-arrow-left fa-3"></i></button>
+							</div>
+							<div class="multiple-select-parent">
+								<div class="row">
+									<div class="col-sm-12">Selected Variables</div>
+								</div>
+								<div class="multiple-select">
+									<div class="ul-header">
+										<span>Variable</span>
+										<span>Table</span>
+										<span>Mnemonic</span>
+									</div>
+									<div class="scrolldiv">
+										<ul>
+											<li *ngFor="let item of selected" id={{item.id}} (click)="toggleDeSelect($event, item) ">
+												<span>{{item.name}}</span>
+												<span>{{item.table}}</span>
+												<span>{{item.mnemonic}}</span>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="iw-exporter-ascii-format">
+				<div class="iw-settings-header" [ngClass]="{'iw-collapsed-header': asciiFormat.hidden}" (click)="asciiFormat.hidden = !asciiFormat.hidden">
+					<i class="fa" [ngClass]="{'fa-caret-down': !asciiFormat.hidden, 'fa-caret-right': asciiFormat.hidden}"></i>
+					<span class="iw-title">File Format</span>
+				</div>
+				<div class="iw-exporter-body" #asciiFormat>
+					<div class="iw-line"></div>
+					<div class="iw-ascii-section">
+						<div class="iw-row">
+							<label>Select File Format:</label>
+							<select [(ngModel)]="exporterModel.FileFormat">
+								<option [ngValue]="format" *ngFor="let format of fileFormatTypes">
+									{{format}}
+								</option>
+							</select>
+							<div *ngIf="exporterModel.FileFormat==='ASCII'" class="iw-checkbox right-section">
+								<input type="checkbox" [(ngModel)]="exporterModel.IncludeHeader">
+								<label>Include Header</label>
+							</div>
+							<div *ngIf="exporterModel.FileFormat==='LAS 2.0'" class="iw-checkbox right-section">
+								<input type="checkbox" [(ngModel)]="exporterModel.Wrap">
+								<label>Wrap<span *ngIf="!exporterModel.Wrap">(A Max of 20 curves can be exported if “Wrap” is not selected)</span></label>
+							</div>
+							<div *ngIf="exporterModel.FileFormat==='LIS'" class="iw-checkbox right-section">
+								<div class="iw-lis-format">
+									<input type="radio" name="lisFileFormat" id="lisTif" [(ngModel)]="exporterModel.LISType" value="TIF">
+									<label for="lisTif">TIF</label>
+								</div>
+								<div class="iw-lis-format">
+									<input class="align-left" type="radio" name="lisFileFormat" id="lisNti" [(ngModel)]="exporterModel.LISType" value="NTI">
+									<label for="lisNti" class="iw-radio">NTI</label>
+								</div>
+							</div>
+						</div>
+						<div *ngIf="exporterModel.FileFormat==='ASCII'" class="iw-row">
+							<input type="radio" name="asciiFileFormat" class="iw-control-with-text" [(ngModel)]="exporterModel.UseFixedWidth" [value]="true">
+							<label>Fixed Width:</label>
+							<input [iwNumericInput]="true" type="text" class="exporter-input" [disabled]="!exporterModel.UseFixedWidth" [ngModel]="exporterModel.FixedWidth"
+							 (NumericResponseGenerated)="onFixedWidthChange($event)" (keypress)="onlyNumberKey($event)">
+						</div>
+						<div class="iw-exporter-page-error" *ngIf="exporterModel.FileFormat==='ASCII' && exporterModel.UseFixedWidth && (exporterModel.FixedWidth < 19 || exporterModel.FixedWidth > 999)">
+							Please enter a value between 19 and 999.
+						</div>
+						<div *ngIf="exporterModel.FileFormat==='ASCII'" class="iw-row">
+							<input type="radio" name="asciiFileFormat" class="iw-control-with-text" [(ngModel)]="exporterModel.UseFixedWidth" [value]="false">
+							<label>Delimited with:</label>
+							<select #delimiter [(ngModel)]="exporterModel.DelimitedValue" (ngModelChange)="delimitedWithValueChanged()">
+								<option [ngValue]="character" *ngFor="let character of delimitedWithValueList">
+									{{character}}
+								</option>
+							</select>
+							<label class="right-section">Character:</label>
+							<input type="text" class="exporter-input-short" maxlength="1" [(ngModel)]="exporterModel.DelimitedCharacter" [disabled]='disableDelimitedInput'>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="iw-exporter-missing-data">
+				<div class="iw-settings-header" [ngClass]="{'iw-collapsed-header': missingData.hidden}" (click)="missingData.hidden = !missingData.hidden">
+					<i class="fa" [ngClass]="{'fa-caret-down': !missingData.hidden, 'fa-caret-right': missingData.hidden}"></i>
+					<span class="iw-title">Missing Data</span>
+				</div>
+				<div class="iw-exporter-body" #missingData>
+					<div class="iw-line"></div>
+					<div class="missing-data-section">
+						<label>Missing Float:</label><input [iwNumericInput]="false" type="text" class="exporter-input" [ngModel]="exporterModel.MissingFloat"
+						 (NumericResponseGenerated)="onMissingFloatChange($event)">
+						<label>Missing Integer:</label><input [iwNumericInput]="false" type="text" class="exporter-input" [ngModel]="exporterModel.MissingInteger"
+						 (NumericResponseGenerated)="onMissingIntegerChange($event)">
+						<label>Missing ASCII:</label><input type="text" class="exporter-input" [(ngModel)]="exporterModel.MissingASCII" maxlength="8">
+						<div class="iw-exporter-page-error" *ngIf="exporterModel.MissingInteger<-99999999 || exporterModel.MissingInteger>99999999 ||
+						 exporterModel.MissingFloat<-99999999 || exporterModel.MissingFloat>99999999 || exporterModel.MissingInteger===null ||
+						 exporterModel.MissingFloat===null ">
+							Please enter a value between -99999999 and 9999999.
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="iw-exporter-comment">
+				<div class="iw-settings-header" [ngClass]="{'iw-collapsed-header': comment.hidden}" (click)="comment.hidden = !comment.hidden">
+					<i class="fa" [ngClass]="{'fa-caret-down': !comment.hidden, 'fa-caret-right': comment.hidden}"></i>
+					<span class="iw-title">Comment</span>
+				</div>
+				<div class="iw-exporter-body" #comment>
+					<div class="iw-line"></div>
+					<textarea maxlength="2500" class="input-comment" [(ngModel)]="exporterModel.Comment" [style.resize]="'none'">
+					</textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="iw-exporter-data-display">
+		<span class="iw-title">Export Details</span>
+		<div class="iw-line"></div>
+		<div class="iw-ascii-table-section">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th class="column1">Variable</th>
+						<th class="column1">Table</th>
+						<th class="column1">Trace Label</th>
+						<th class="column2">Mnemonic</th>
+						<th class="column1">Unit of Measure</th>
+						<th class="column3">Smoothing Option</th>
+						<th class="column3">Interval Distance</th>
+						<th class="column4">Smoothing Distance</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let item of exportTable" [class.iw-box-warning]="isUnsupportedEntry(item.dataType) && highlightUnsupportedItem">
+						<td>{{item.variable}}</td>
+						<td>{{item.table}}</td>
+						<td><input type="text" maxlength="30" [(ngModel)]="item.traceLabel"></td>
+						<td><input type="text" maxlength="30" [(ngModel)]="item.mnemonic"></td>
+						<td>{{ item.uom}}</td>
+						<td [ngClass]="{'iw-grayout': exporterModel.DataPoint}">
+							<select [disabled]="exporterModel.DataPoint">
+								<option *ngFor="let smoothing of item.smoothingOption">
+									{{smoothing}}
+								</option>
+							</select>
+						</td>
+						<td [ngClass]="{'iw-grayout': exporterModel.DataPoint}"><input type="text" [disabled]="exporterModel.DataPoint" [(ngModel)]="exporterModel.DataPoint ? 1:exporterModel.EvenIntervalValue"
+							 readonly>
+						</td>
+						<td [ngClass]="{'iw-grayout': exporterModel.DataPoint}" [class.iw-box-error]="item.smoothingDistance<0 || item.smoothingDistance>999 || item.smoothingDistance === null"><input type="text" [disabled]="exporterModel.DataPoint" [iwNumericInput]="true" [ngModel]="item.smoothingDistance" (NumericResponseGenerated)="onSmoothingDistanceChange($event, item)">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="iw-exporter-page-error" *ngIf="!withinMaxMinRange()">
+				Please enter a value between 0 and 9999.
+			</div>
+		</div>
+	</div>
+	<div class="iw-ascii-button-section">
+		<input type="button" class="btn btn-cancel" value="Clear" (click)="clearExporter()">
+		<input type="button" class="btn btn-add" (click)="export()" value="Export" [disabled]="!exporterModel.IsModelValid">
+	</div>
+</div>
